@@ -1,0 +1,54 @@
+これからやること
+    myfile.js インジェクション対策の強化
+    @プロフィール編集
+    画像投稿対応
+    @タイムラインへのツイート一覧
+    @各所でuser_id からusername持ってくるようにする
+    @ツイート一覧のページからページに行けるようにする
+    CSSぶちこむ
+    りつりぷふぁぼの実装
+    @ツイート最新100兼とかにする?
+    @フォローの実装
+    すべてのツイートとフォローしてる人だけのTLを作る
+    ツイート削除
+    FFの人数を表示
+
+<p><a href=""></a></p>
+
+
+sql操作メモ
+    INSERT INTO user(name) values("test_name");
+    select * from user;
+    select id from user where name="hoge";
+
+
+cookieメモ
+    cookies=cgi.cookies
+    user_id=(cookies["u_id"][0]||-1).to_i
+    new_cookie=CGI::Cookie.new("name"=>"u_id","value"=>user_id.to_s)
+    print cgi.header("type"=>"text/html", "charset"=>"utf-8","cookie"=>[new_cookie])
+
+
+sqlite> .schema
+CREATE TABLE user
+(id integer primary key autoincrement,
+name text,
+profile text,
+icon text);
+
+CREATE TABLE sqlite_sequence(name,seq);
+
+CREATE TABLE favorite(
+user_id int,
+tweet_id int);
+
+CREATE TABLE relation(
+user_id int 
+,follower_id int);
+
+CREATE TABLE tweet(
+id integer primary key autoincrement,
+user_id int,
+messages text,
+time text,
+files text);
